@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Facebook clone</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+        .myGrid{
+             width:70vh;
+             overflow:auto;
+             height:30vh;
+             border:3px solid blue;
+        }
+        .myGrid2{ 
+        width:70vh;
+             overflow:auto;
+             height:13vh;
+        }
+        body{
+             overflow:scroll;
+        }
+            #loader_1,#loader_2{
+                font-size:4em;
+                display:flex;  
+        flex-flow:row wrap;        justify-content:center;                         align-items: center;
+        text-align:center;
+                color:rgba(0,0,250,1);
+                height:100vh;
+            }
+            #loader_1 i,#loader_2 i{
+            height:1.2em;
+            width:1.2em;
+            border-radius:50%;
+            padding:8px;
+            border:1px solid white;
+            background-color:white;
+            box-shadow:0px 10px 12px 3px rgba(200,200,205,1),inset 1px 3px 4px 5px rgba(250,250,250,1);
+            }
+         #loading{
+        font-size:0.2em;
+        position:relative;
+        top:12%;
+        left:-23%;
+     background-color:white;
+     color:white;
+         }  #loading_circle1,#loading_circle2,#loading_circle3,#loading_circle4{
+               box-shadow:inset 1px 3px 4px 5px rgba(250,250,250,1);
+                color:white;
+           }
+           #facebook{
+               position:fixed;
+               width:100vh;
+              box-shadow:0px 10px 12px 3px rgba(200,200,205,1),inset 1px 3px 4px 5px rgba(250,250,250,1);
+           }
+           #facebook span:first-of-type{
+               font-size:2em;
+           }
+           #logos{
+               font-size:1.5em;
+                position:relative;
+                left:10%;
+                top:10%;
+                letter-spacing:0.6em;
+           }
+           #nav{
+                letter-spacing:1.1em;
+           }
+           .rest{
+                margin-top:22%;
+           }
+           #feeling{
+                word-spacing:2em;
+           }
+           #stories{
+                
+                display:grid;
+               text-align: center; grid-template-columns:repeat(32,1fr);
+                grid-gap:3px;
+           }
+           #active{
+                
+           }
+           #Mactive{
+                 border-radius:50%;
+               height:10vh;
+               width:10vh;
+           }
+           #Notifi{
+                border-radius:50%;
+               height:11vh;
+               width:11vh;
+           }
+           #myStoryImage{
+          width:15vh;
+                height:auto;
+                border-radius:10px;
+           }
+           #StoryImage{
+                width:16vh;
+                height:30vh;
+                border-radius:10px;
+           }
+           #userImage{
+                position: absolute;
+                top:5%;
+                left:5%;
+                border-radius:50%;
+                height:auto;
+                width:20%;
+                border:2px solid blue;
+           }
+           #userName{
+                position: absolute;
+                bottom:0%;
+                left:5%;
+           }
+           #tagNo{
+                position:absolute;
+                bottom:30%;
+                left:0;
+                border:1px solid blue;
+                border-radius:10px;
+                background-color:blue;
+                width:3vh;
+           }
+           #postImage{
+                border-radius:50%;
+                width:10vh;
+                height:10vh;
+                float:left;
+           }
+           #postArea{
+                height:30vh;
+                width:49vh;
+               display:flex;
+               justify-content:center;
+               align-items:center;
+                box-sizing:border-box;
+           }
+           #main_post{
+               box-shadow:4px 2px 5px 4px rgba(0,0,0,0.16),4px 2px 10px 4px rgba(0,0,0,0.12);
+                box-sizing:border-box;
+           }
+          *{
+               box-sizing:border-box;
+          }
+          #tag span{
+               border:1px solid rgba(0,0,1,.4);
+               border-radius:10px;
+               background-color:rgba(0,0,1,.4);
+          }
+          #fRImage{
+               height:12vh;
+               width:12vh;
+               border-radius:50%;
+               float:left;
+               
+          }
+          #DR,#CR{
+               border:1px solid rgba(1,1,1,.3);
+               border-radius:10px;
+               padding:0em 2em;
+               background-color:rgba(10,20,200,.7);
+          }
+          #active{
+               border-radius:50%;
+               height:12vh;
+               width:12vh;
+               
+          }
+          #active2{
+               display:grid;
+                text-align:center;
+                grid-template-columns:repeat(32,1fr);
+                grid-gap:3px;
+          }
+          #bot_messages{
+               margin-top:20%;
+               position:relative;
+          }
+          #hey{     
+  
+     text-align:center;
+     margin-left:0%;
+     margin-top:1%;
+
+          }
+         
+               #so{
+                    margin-top:1em;
+               position: relative;
+               top:10%;
+             left:1%;
+             display:flex;
+             flex-flow:row wrap;
+             
+          border:2px solid blue;
+          width:30%;
+               }
+          
+               .RM{
+                   
+               }
+               #newReacts{
+                    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+                    height:6vh;
+                    width:17vh;
+                    border-radius:30px;
+                    text-align:center;
+                    padding:1vh;
+                
+               }
+               .loader {
+     position: absolute;
+     top:30%;
+     left:30%;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid green;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+        </style>
+    </head>
+    <body>
+  
+   
+ <div id="loader_1">
+        <i class="fa fa-facebook" ></i>
+    </div>
+     <div id="loader_2" style="display:none;">
+       <div ><i class="fa fa-facebook" ></i></div>
+        <div id="loading"><span class="fa fa-circle" id="loading_circle1"></span><span class="fa fa-circle" id="loading_circle2"></span><span class="fa fa-circle" id="loading_circle3"></span><span class="fa fa-circle" id="loading_circle4"></span></div>
+    </div>
+     <div id="login">
+   <h2>Facebook</h2>
+  <label for="username" >Usename or Mobile No.</label>
+  <input style="width:100%;" />
+    <label for="password" >Password</label>
+  <input style="width:100%;" type="password" id="password"/>
+   <input type="button" style="width:100%;background-color:blue;text-align:center;padding:5px;" onclick="validate()" value="Log in"/>
+   
+   <span style="color:blue">Forgotten password?</span>
+   <br>
+   <br>
+  <div style="text-align:center;"> <h4>OR</h4></div>
+   <div style="background-color:green;text-align:center;">Create new Account</div>
+ 
+   <br>
+   <br>
+    <div style="color:green">
+    <span>English(US)</span><br>
+    <span>English(UK)</span><br>
+    <span>French</span><br></div>
+    
+    </div>
+         <div class="loader" style="display:none;"></div>
+     <div id="Main_fb" style="display:none;">
+
+    <div id="facebook"><div><span >Facebook</span><span id="logos"><i class="fa fa-search"></i><i class="fa fa-user"></i><i>&#9776;</i></span></div>
+    <div id="nav">    
+    <i class="fa fa-home " onclick="show('home')" > </i>
+    <i class="fa fa-user  " onclick="show('request')"> </i>
+    <i class="fa fa-envelope" onclick="show('messages')"> </i>
+    <i class="fa fa-bell " onclick="show('notification')"> </i>
+    <i class="fa fa-video-camera " onclick="show('videos')"> </i>
+    <i class="fa fa-users" onclick="show('groups')"> </i>
+     </div>
+     </div> 
+     <hr>
+     <div id="home" class="fbNav">
+     <div class="rest">
+     <div id="post">
+     <i class="fa fa-user"style="border:1px solid black;border-radius:50%;height:4vh;width:4vh;text-align:center;"></i><input type="text" id="post1" placeholder="what is on your mind" onfocus="post()"/><i class="fa fa-image"></i><br>
+     <div id="feeling"><span>Feelings</span><span> Live_video</span><span> Location</span></div></div>  
+    </div>
+    <div class="myGrid">
+    <div id="stories" style="">
+         <div class="stories" id="mystory" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;">
+        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="myStoryImage">
+         </div>
+         
+         
+         
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+           
+      <div  id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+      
+      
+      
+        <div id="story" style="border:1px solid black;border-radius:10px; height:30vh; width:16vh;background-color: black;position:relative;">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="StoryImage">        <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="userImage">
+      <span id="tagNo">1</span>
+      <span id="userName">Peculiar Codes</span></div>
+      
+   
+   
+</div>   
+   
+   
+    </div>
+    
+    
+   
+   
+   
+     <div style="background-color:blue;text-align:center;width:100%;border:1px solid rgba(20,20,255,.7);">  View all stories   </div>
+     <div id="mm"></div>
+     <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+         <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+ <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+ <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+ <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+ <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+ <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+ <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+ <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+      </div>
+     
+        </div>
+    </div>
+    <div id="request" style="display:none; position:sticky;" class="rest fbNav">
+    
+<div><span style="font-size:2em;">Friends</span><span id="logos" style="float:right;margin-right:1em"><i class="fa fa-search"></i></div>
+    <div id="tag"><span>Suggestions</span><span>Friends</span></div>
+    <div id="frien"><span>Friends</span><span style="float: right;margin-right:1em;color:blue;">See all</span></div>
+    <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+    
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+     <div id="fRequest"> <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="fRImage"><span>Peculiar_codes</span>
+    <div id="mutual">5 mutual friends</div>
+    <div style="margin-left:4em;"><span id="CR">Confirm</span><span id="DR">Delete</span></div></div>
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+
+  </div>
+  <div id="messages" class="rest fbNav" style="display:none">
+  
+  <div><span style="font-size:2em;">Messages</span><span id="logos" style="float:right;margin-right:1em"><i class="fa fa-search"></i><i class=" fa fa-cog"></i></div>
+ <div class="myGrid2">
+ <div id="active2">
+  <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+  <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+  <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+  <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+ <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+  <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+ <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+  <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+ <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+  <span > <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="active"></span>
+ </div>
+ </div>
+  <br>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+  <div id="Fmessages" onclick="showMes()"style=" float:left;">
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br>
+ <div style="float:left;"><span>Hi</span></div>
+   </div>
+ 
+  
+  
+  </div>
+  <div id="notification" class="rest fbNav" style="display:none;">
+  <div>
+  <span style="font-size:2em;">Notifications</span>
+  <span id="logos" style="float:right;margin-right:1em"><i class="fa fa-search"></i>
+  </div>
+  <span style="border:1px solid blue;background-color:blue;">Mark all as read</span>
+  <div id="Fmessages" style"               box-shadow:4px 2px 5px 4px rgba(0,0,0,0.16),4px 2px 10px 4px rgba(0,0,0,0.12);">
+  <h3>New</h3>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+  <h3>Earlier</h3>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="Notifi" style="float:left;margin-top:.2em"><span>Peculiar_codes mentioned you in a comment</span>
+ <div><span>12 hours ago</span></div>
+ 
+ 
+  </div>
+  </div>
+  <div id="videos" class="rest fbNav" style="display:none;">
+  <div><span style="font-size:2em;">Videos</span><span id="logos" style="float:right;margin-right:1em"><i class="fa fa-user"></i><i class=" fa fa-search"></i></div>
+
+   <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br><span style="float:left;">3 days ago</span>   <div id="video"><video controls><source src="http://www.sololearn.com/uploads/video.mp4" type="video/mp4"> <source src="http://www.sololearn.com/uploads/video.ogg" type="video/ogg">  Video is not supported by your browser </video> </div><div id="reacts"> <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">82</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">33</i> <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">14</i> </div>
+   <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" style="float:left;"id="Mactive"  ><span style="float:left">Peculiar_codes</span><br><span style="float:left;">3 days ago</span>   <div id="video"><video controls><source src="http://www.sololearn.com/uploads/video.mp4" type="video/mp4"> <source src="http://www.sololearn.com/uploads/video.ogg" type="video/ogg">  Video is not supported by your browser </video> </div><div id="reacts"> <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">82</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">33</i> <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">14</i> </div>
+     
+  
+  </div>
+  <div style="display:none;" id="groups"class="rest fbNav">
+  <div><span style="font-size:2em;">Friends</span><span id="logos" style="float:right;margin-right:1em"><i class="fa fa-search"></i></div>
+    <div id="tag"><span>Create Group</span><span>Discover</span></div>
+    <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+   <div id="main_post">  
+           <img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span>
+           <div style="font-size:0.6em;">20:09</div>
+     <div id="postArea">Peculiar_codes facebook clone</div>
+     
+     <div id="reacts">
+     <i class="fa fa-thumbs-up" style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);height:6vh;width:17vh;border-radius:30px;text-align:center;padding:1vh">2</i><i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;"class="fa fa-comment">3</i>
+     <i style="box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);width:17vh;height:6vh;border-radius:30px;text-align:center;padding:1vh;" class="fa fa-share">4</i>
+     </div>
+  </div>
+  
+       
+  
+
+  </div>
+  <div id="Mchats" style="display:none;height:90vh;">
+  <header style="position: sticky;top:5%;background-color:teal;">           <i class="fa fa-arrow-left" onclick="close_chat()"></i><img src="https://i.ibb.co/FKd6MtC/ri.jpg" alt="ri" id="postImage"><span id="username">Peculiar_codes</span><br><span id="typing">online</span></header>
+  
+  <div id="bot_messages"><span id="hey"></span></div>
+  
+  
+  
+  
+  <footer style="position:fixed;bottom:7%;width:100%;"><textarea id="message_content" type="text" placeholder="send message"></textarea><button class="fa fa-send" onclick="send()"></button></footer>
+  </div>
+  </div>
+  
+  <div id="new-post" style="display:flex;flex-flow:row wrap;justify-content:center;align-items:center;background-color:teal;height:100vh;display: none;">
+  
+  <textarea height="45vh" width="100%; "id="newPost"></textarea>
+  <button onclick="submit_post()">Submit</button>
+  </div>
+    <script>
+       var loader_1=document.querySelector("#loader_1");
+        setTimeout(()=>{
+            loader_1.style.display="none";
+        },2000);
+        var loader_2=document.querySelector("#loader_2");
+        setTimeout(()=>{
+            loader_2.style.display="flex";
+        },100);
+        setTimeout(()=>{
+            loader_2.style.display="none";
+        },4000000);
+        var circle1=document.querySelector("#loading_circle1");
+        var circle2=document.querySelector("#loading_circle2");
+        var circle3=document.querySelector("#loading_circle3");
+        var circle4=document.querySelector("#loading_circle4");
+
+       setTimeout(()=>{
+            
+           circle1.style.color="blue";
+       },3600);
+       setTimeout(()=>{
+           circle2.style.color="blue";
+       },4600);
+       setTimeout(()=>{
+           circle3.style.color="blue";
+       },5600);
+       setTimeout(()=>{
+           circle4.style.color="blue";
+       },6600);
+      setTimeout(()=>{
+           loader_2.style.display="none";
+       },6700);
+       
+        function show(y){
+       var i;
+       var x=document.getElementsByClassName("fbNav");
+       for(i=0;i<x.length;i++){
+            x[i].style.display="none";
+       }
+       document.getElementById(y).style.display="block";
+     
+  }
+  function showMes(){
+       let all=document.querySelectorAll(".rest");
+    for(m=0;m<all.length;m++){
+     all[m].style.display="none";
+  }
+    document.querySelector("#Main_fb").style.display="none";
+  let mes=document.querySelector("#Mchats");
+  mes.style.display="block";}
+  function hideMes(){
+       let all=document.querySelectorAll(".rest");
+    for(m=0;m<all.length;m++){
+     all[m].style.display="block";
+  }
+  document.querySelector("#all").style.display="block";
+  let mes=document.querySelector("#Mchats");
+  mes.style.display="none";}
+  function send(){
+let message=document.querySelector("#message_content");    
+let hey=document.querySelector("#hey");
+      let random=Math.random()*10;
+       setTimeout(()=>{
+        document.querySelector("#typing").innerHTML="typing..";
+        
+        },1000);
+        setTimeout(()=>{
+   document.querySelector("#typing").innerHTML="online"},3000);  
+      setTimeout(()=>{let m_s=document.createElement("div");
+      let hh=message.value;
+    let pp=document.createElement("div");
+    let tN=document.createTextNode(hh);
+    pp.appendChild(tN);
+      m_s.style.position="relative";
+      m_s.style.width="30%;"
+      m_s.style.marginLeft="80%";
+      m_s.style.top="10%";
+      m_s.style.right="5%";
+      pp.style.border="1px solid blue";
+ m_s.appendChild(pp);
+           hey.append(m_s);
+          
+            },1000);
+            setTimeout(()=>{
+             let myMessage=document.createElement("span");
+             let gh=document.createElement("h5");
+   myMessage.setAttribute("id","so");
+  var answer = Math.floor(Math.random() * 16);
+  if (answer == 1) {
+gh.innerHTML="<div class='RM'>hi</div>";
+} else if (answer == 2) {
+gh.innerHTML="<div class='RM'>hello</div>";}
+    else if (answer == 3) {
+gh.innerHTML="<div class='RM'>Sup</div>";}
+           else if (answer == 4) {
+gh.innerHTML="<div class='RM'>How are you u doing</div>";}
+           else if (answer == 5) {
+gh.innerHTML="<div class='RM'>😒😒😒</div>";}
+           else if (answer == 6) {
+gh.innerHTML="<div class='RM'>Am so broke</div>";}
+           else if (answer == 7) {
+gh.innerHTML="<div class='RM'>God what are you saying</div>";}
+           else if (answer == 8) {
+gh.innerHTML="<div class='RM'>Should i send my account number</div>";}
+           else if (answer == 9) {
+gh.innerHTML="<div class='RM'>Do you need money</div>";}
+           else if (answer == 10) {
+gh.innerHTML="<div class='RM'>I need a job</div>";}
+           else if (answer == 11) {
+gh.innerHTML="<div class='RM'>I love you man</div>";}
+           else if (answer == 12) {
+gh.innerHTML="<div class='RM'>hmm</div>";}
+           else if (answer == 13) {
+gh.innerHTML="<div class='RM'>i know right</div>";}
+           else if (answer == 14) {
+gh.innerHTML="<div class='RM'>i can't see your message</div>";}
+           else if (answer == 15) {
+gh.innerHTML="<div class='RM'>Work hard</div>";}
+           
+          
+           else {
+gh.innerHTML="<div class='RM'>hi</div>";}
+           
+   let mine=document.createTextNode(gh.textContent);
+          myMessage.appendChild(mine);
+hey.append(myMessage);
+},3000);
+  }
+  
+      var a=["i","j","k","l","m","n","o","p","q","a","b","c","r","t","s","u","v","d","e","f","g","h","w","x","y","z"];
+var b=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var c=[0,1,2,3,4,5,6,7,8,9];
+var d=["@","#","$","_","&","-",")","("];
+var e=Math.floor(Math.random()*26);
+  var f=Math.floor(Math.random()*26);
+
+var g=Math.floor(Math.random()*26);
+
+var h=Math.floor(Math.random()*26);
+
+var i=Math.floor(Math.random()*26);
+
+var j=Math.floor(Math.random()*26);
+
+var k=Math.floor(Math.random()*26);
+
+var l=Math.floor(Math.random()*26);
+
+var m=Math.floor(Math.random()*26);
+var n=Math.floor(Math.random()*8);
+var o=Math.floor(Math.random()*10);
+var bb=Math.floor(Math.random()*10);
+var cc=Math.floor(Math.random()*10);
+var dd=Math.floor(Math.random()*10);
+var p=b[e];
+var q=a[f];
+var r=a[g];
+var s=a[h];
+var t=a[i];
+var u=a[j];
+var v=a[k];
+var w=a[l];
+var x=a[m];
+var y=d[n];var z=c[o];
+var aa=c[bb];
+var ee=c[cc];
+var ff=c[dd];
+
+let pass=p+q+r+y+z+ff;
+alert("Your password is "+pass);
+function validate(){
+     let password=document.querySelector("#password");
+     if(password.value==pass){
+          document.querySelector("#Main_fb").style.display="block";
+          document.querySelector("#login").style.display="none";
+     }
+     else {
+          alert("incorect password");
+          alert("Your password is "+pass);
+     }
+}
+ function post(){
+      document.querySelector("#Main_fb").style.display="none";
+      document.querySelector("#new-post").style.display="block";
+      
+ } 
+ function submit_post(){
+                    document.querySelector("#new-post").style.display="none";  setTimeout(()=>{         document.querySelector("#Main_fb").style.display="block";
+
+           let newPost=document.querySelector("#newPost");
+          let div=document.createElement("div");
+          div.setAttribute("id","main_post");
+          let picture=document.createElement("img");
+          picture.setAttribute("src","https://i.ibb.co/FKd6MtC/ri.jpg");
+          picture.setAttribute("id","postImage");
+          let span1=document.createElement("span");
+          let span1_text=document.createTextNode("Peculiar_codes");
+          span1.appendChild(span1_text);
+let div1=document.createElement("div");         div1.style.fontSize="0.6em";
+let div1_text=document.createTextNode("Just Now");
+div1.appendChild(div1_text);
+let div2=document.createElement("div");
+div2.setAttribute("id","postArea");
+let div3=document.createElement("div");
+div3.setAttribute("id","reacts");
+  let i1=document.createElement("i");
+i1.setAttribute("class","fa fa-thumbs-up");
+i1.setAttribute("id","newReacts");
+let i1_text=document.createTextNode("2");
+i1.appendChild(i1_text);
+let i2=document.createElement("i");
+i2.setAttribute("class","fa fa-comment");
+i2.setAttribute("id","newReacts");
+let i2_text=document.createTextNode("2");
+i2.appendChild(i2_text);
+let i3=document.createElement("i");
+i3.setAttribute("class","fa fa-share");
+i3.setAttribute("id","newReacts");
+let i3_text=document.createTextNode("2");
+i3.appendChild(i3_text);
+div3.appendChild(i1);
+div3.appendChild(i2);
+div3.appendChild(i3);
+ 
+       let div_text=newPost.value;
+          let divText=document.createTextNode(div_text) 
+  div.appendChild(picture);
+
+  div.appendChild(span1);
+    div.appendChild(div1);
+  div.appendChild(div2);        
+  div2.appendChild(divText);
+  div.appendChild(div3);      
+          let mm=document.querySelector("#mm");
+          mm.prepend(div); 
+                    document.querySelector(".loader").style.display="none";  
+          },3000) ;
+          document.querySelector(".loader").style.display="flex";  
+ }
+ function close_chat(){
+      document.querySelector("#Mchats").style.display="none";
+          document.querySelector("#Main_fb").style.display="block";
+ }
+  
+  window.onload = function () {
+
+let thumbs_up = document.querySelectorAll(".fa-thumbs-up");
+
+for(let i = 0; i < thumbs_up.length; i++) {
+
+    let thumbs = thumbs_up[i].textContent;
+
+    thumbs_up[i].addEventListener("click", () => {
+         thumbs = parseInt(thumbs, 10);
+         thumbs = thumbs + 1;
+     
+         thumbs_up[i].textContent = thumbs;
+    }); 
+    }
+let share = document.querySelectorAll(".fa-share");
+
+for(let i = 0; i < share.length; i++) {
+
+    let shares = share[i].textContent;
+
+    share[i].addEventListener("click", () => {
+         shares = parseInt(shares, 10);
+         shares = shares + 1;
+     
+         share[i].textContent = shares;
+    }); 
+    }
+let confirm = document.querySelectorAll("#CR");
+
+for(let i = 0; i < confirm.length; i++) {
+
+   
+
+    confirm[i].addEventListener("click", () => {
+        let mutual=document.querySelectorAll("#mutual");
+        mutual[i].textContent="You are now friends";
+        confirm[i].style.display="none";
+    
+    }); 
+    }
+
+}
+  
+    </script>  
+    </body>
+</html>
